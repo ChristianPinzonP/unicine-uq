@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,4 +24,8 @@ public class Prestamo implements Serializable {
     private LocalDateTime fechaPrestamo;
     @Column(nullable = false)
     private LocalDate fechaRegreso;
+    @ManyToOne
+    private Cliente cliente;
+    @ManyToMany
+    private List<Libro>libros;
 }

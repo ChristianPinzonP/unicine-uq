@@ -1,9 +1,11 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import jdk.dynalink.linker.LinkerServices;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Getter
@@ -12,11 +14,9 @@ import java.util.Objects;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Autor implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Integer codigo;
-    @Column(nullable = false,length = 180)
-    private String nombre;
+public class Autor extends Persona implements Serializable {
+
+    @ManyToMany(mappedBy = "autores")
+    private List<Libro> libros;
+
 }
